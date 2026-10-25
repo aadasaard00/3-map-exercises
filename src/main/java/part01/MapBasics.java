@@ -1,5 +1,6 @@
 package part01;
 
+import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -20,9 +21,9 @@ public class MapBasics {
      * Create and return a new Map that maps String keys to String values.
      */
     public Map<String, String> createMap() {
-        // Hint: you can not instantiate a Map directly, but you can instantiate a class
-        // that *implements* the Map interface.
-        return null;
+        HashMap<String, String> map = new HashMap<>();
+
+        return map;
     }
 
     /**
@@ -30,6 +31,7 @@ public class MapBasics {
      */
     public void addEntry(Map<String, String> map, String key, String value) {
         // Hint: use the put method
+        map.put(key, value);
     }
 
     /**
@@ -47,7 +49,14 @@ public class MapBasics {
     public Map<String, Integer> getPopulations() {
         // Hint: Make sure to write the names of the countries exactly as they are
         // written above, otherwise the tests will fail.
-        return null;
+      Map<String, Integer> map = new HashMap<>();
+       map.put("Denmark", 5894687);
+       map.put("Finland", 5587442);
+       map.put("Iceland", 354234);
+       map.put("Norway", 5509591);
+       map.put("Sweden", 10261767);
+
+        return map;
     }
 
     /**
@@ -56,7 +65,7 @@ public class MapBasics {
      */
     public String getValue(Map<String, String> map, String key) {
         // Hint: use the get method
-        return null;
+        return map.get(key);
     }
 
     /**
@@ -65,14 +74,15 @@ public class MapBasics {
     public boolean hasKey(Map<String, String> map, String key) {
         // Hint: see the resources above for a method that does this and the rest of
         // the methods below
-        return false;
+       
+        return map.containsKey(key);
     }
 
     /**
      * Return true if the given map contains the given value, false otherwise.
      */
     public boolean hasValue(Map<String, String> map, String value) {
-        return false;
+        return map.containsValue(value);
     }
 
     /**
@@ -80,6 +90,9 @@ public class MapBasics {
      * the map.
      */
     public void addIfNotPresent(Map<String, String> map, String key, String value) {
+        if(!map.containsKey(key)){
+            map.put(key, value);
+        }
     }
 
     /**
@@ -89,6 +102,7 @@ public class MapBasics {
      * @param key the key of the entry to remove
      */
     public void removeEntry(Map<String, String> map, String key) {
+        map.remove(key);
     }
 
     /**
@@ -98,22 +112,27 @@ public class MapBasics {
      * @return the number of entries in the map
      */
     public int countEntries(Map<String, String> map) {
-        return 0;
+        return map.size();
     }
 
     /**
      * Return true if the given map is empty, false otherwise.
      */
     public boolean isEmpty(Map<String, String> map) {
-        return false;
+        if(map.isEmpty()){
+            return true;
+        }
+        else{return false;
+        }
     }
 
     /**
      * Return the largest Integer value in the map. If the map is empty, return
      * null.
      */
-    public Integer largestValue(Map<String, Integer> map) {
-        return null;
+    public Integer largestValue(Map<String, Integer> map) {  
+        return map.size();
+
     }
 
     /**
@@ -121,7 +140,12 @@ public class MapBasics {
      * return 0.
      */
     public int sumOfValues(Map<String, Integer> map) {
-        return 0;
+       int summa = 0;
+
+       for(int arvo : map.values()){
+        summa += arvo;
+       }  
+        return summa;
     }
 
     /**
@@ -132,7 +156,13 @@ public class MapBasics {
      * maps should be modified.
      */
     public Map<String, String> combineMaps(Map<String, String> map1, Map<String, String> map2) {
-        return null;
+      
+        Map<String, String> yhdistetty = new HashMap<>();
+
+        yhdistetty.putAll(map2);
+        yhdistetty.putAll(map1);
+
+        return yhdistetty;
     }
 
     /**
@@ -140,5 +170,9 @@ public class MapBasics {
      * should modify the given map, not create a new one.
      */
     public void incrementValues(Map<String, Integer> map, int amount) {
+        for(String key : map.keySet()){
+            int arvonyt = map.get(key);
+            map.put(key, arvonyt + amount);
+        }
     }
 }
